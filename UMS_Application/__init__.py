@@ -1,27 +1,33 @@
 from flask import Flask
-import os
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
-def make_app():
-    # create app
-    app = Flask(__name__, instance_relative_config=True)
+app = Flask(__name__)
 
-    # provide some global variables that can be used anywhere with current_app.config[var_name]
-    app.config.from_mapping(
-        SECRET_KEY='ums', # this will be changed with a random token when deploying on server
-        DATABASE=os.path.join(app.instance_path, 'ums.sqlite'), # db path
-    )
+login_manager = LoginManager()
 
-    # create instance folder if its not there, this folder will contain database file that we will read/write  
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
-    
-    # created a sample route
-    @app.route('/',methods=['GET'])
-    def home():
-        return 'Our sweet ums'
+app.config.from_mapping(
+    SECRET_KEY='ums',
+    SQLALCHEMY_DATABASE_URI = r'sqlite:///../Database/ums.sqlite',
+    ADMIN_EMAIL = "admin@gmail.com",
+    ADMIN_PASSWORD = "big_password"
+)
 
-    return app
 
-app = make_app()
+login_manager.init_app(app)
+db = SQLAlchemy(app)
+
+from . import authentication
+app.register_blueprint(authentication.bp)
+
+from . import student_view
+app.register_blueprint(student_view.bp)
+
+from . import faculty_view
+app.register_blueprint(faculty_view.bp)
+
+from . import file_transmission
+app.register_blueprint(file_transmission.bp)
+
+from . import routes
+app.register_blueprint(routes.bp)
