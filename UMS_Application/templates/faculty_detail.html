@@ -1,0 +1,183 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="col-0" style="margin-bottom: 5px;">
+
+
+    <a href="{{url_for('admin.add_user')}}" style="float: right; text-decoration: none;  " type="button">
+        <svg xmlns="http://www.w3.org/2000/svg" style="float: right; text-decoration: none; " width="50" height="50"
+            fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2" />
+        </svg>
+    </a>
+</div>
+
+
+<div class="content-section container mt-5"
+    style="width: 100%; height:90%;border-radius: 8px; background-color: #f0f2f2;">
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <!-- {% if form.image.data %} -->
+        <div style="display: flex; justify-content: center;  margin-left: 47%;  margin-right: 47%;">
+            <img class="rounded-circle " style="height: 200px; width:200px "
+                src="data:image/jpeg;base64,{{ form.image.data|b64encode }}" alt="user@email.com">
+        </div>
+        <!-- {% else %} -->
+        <!-- <div style="display: flex; justify-content: center; width: 50px; height: 50px">
+            <img class="avatar-img" src="data:image/jpeg;base64,{{ form.image.data|b64encode }}" alt="user@email.com" />
+        </div> -->
+        <!-- {% endif %} -->
+
+        <fieldset class="form-group">
+            <div class="col-6" style="float: left;">
+                <div class="form-group">
+                    {{ form.faculty_id.label(class="form-control-label") }}
+                    {% if form.faculty_id.errors %}
+                    {{ form.faculty_id(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.faculty_id.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.faculty_id(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.user_id.label(class="form-control-label") }}
+                    {% if form.user_id.errors %}
+                    {{ form.user_id(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.user_id.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.user_id(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                    {{ form.name(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.name.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+
+                </div>
+                <div class="form-group">
+                    {{ form.department.label(class="form-control-label") }}
+                    {% if form.department.errors %}
+                    {{ form.department(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.department.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.department(class="form-control form-control-lg") }}
+                    {% endif %}
+
+
+                </div>
+                <div class="form-group">
+                    {{ form.experience.label(class="form-control-label") }}
+                    {% if form.experience.errors %}
+                    {{ form.experience(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.experience.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.experience(class="form-control form-control-lg") }}
+                    {% endif %}
+
+
+                </div>
+            </div>
+            <div class="col-6" style="float: right;">
+
+                <div class="form-group">
+                    {{ form.cabin.label(class="form-control-label") }}
+                    {% if form.cabin.errors %}
+                    {{ form.cabin(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.cabin.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.cabin(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.mobile_no.label(class="form-control-label") }}
+                    {% if form.mobile_no.errors %}
+                    {{ form.mobile_no(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.mobile_no.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.mobile_no(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.gmail.label(class="form-control-label") }}
+                    {% if form.gmail.errors %}
+                    {{ form.gmail(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.gmail.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.gmail(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.course.label(class="form-control-label") }}
+                    {% if form.course.errors %}
+                    {{ form.course(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.mobile_no.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.course(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.image.label(class="form-control-label") }}
+                    {% if form.image.errors %}
+                    {{ form.image(class="form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.image.errors %}
+                        <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.image(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+            </div>
+
+        </fieldset>
+        <div class="form-group text-center ">
+            {{ form.submit(class="btn btn-outline-danger") }}
+        </div>
+
+
+    </form>
+    {% endblock %}
+</div>

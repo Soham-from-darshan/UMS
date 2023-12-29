@@ -1,0 +1,136 @@
+<!DOCTYPE html><!--
+    * CoreUI - Free Bootstrap Admin Template
+    * @version v4.2.2
+    * @link https://coreui.io/product/free-bootstrap-admin-template/
+    * Copyright (c) 2023 creativeLabs Łukasz Holeczek
+    * Licensed under MIT (https://github.com/coreui/coreui-free-bootstrap-admin-template/blob/main/LICENSE)
+    --><!-- Breadcrumb-->
+<html lang="en">
+<head>
+<base href="../../../static/BASE/">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
+<meta name="author" content="Łukasz Holeczek">
+<meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
+<title>CoreUI Free Bootstrap Admin Template</title>
+<link rel="apple-touch-icon" sizes="57x57" href="assets/favicon/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="assets/favicon/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="assets/favicon/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="assets/favicon/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="assets/favicon/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="assets/favicon/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="assets/favicon/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="assets/favicon/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="assets/favicon/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="assets/favicon/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="assets/favicon/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<!-- Vendors styles-->
+<link rel="stylesheet" href="vendors/simplebar/css/simplebar.css">
+<link rel="stylesheet" href="css/vendors/simplebar.css">
+<!-- Main styles for this application-->
+<link href="css/style.css" rel="stylesheet">
+<!-- We use those styles to show code examples, you should remove them in your application.-->
+<link href="css/examples.css" rel="stylesheet">
+<link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
+</head>
+<style>
+  tr:nth-child(even) {
+   background-color: #f2f2f2;
+  }
+  th {
+    text-align: right;
+  }
+  td{
+    text-align: left;
+  }
+</style>
+<body>
+
+
+    <div class="wrapper d-flex flex-column min-vh-100" style="background-color: #dfdfdf;"> 
+
+        <header class="header header-sticky mb-4">
+            <div class="container-fluid">
+              <a class="header-brand d-md-none" href="#">
+                <svg width="118" height="46" alt="CoreUI Logo">
+                  <use xlink:href="assets/brand/coreui.svg#full"></use>
+                </svg></a>
+              <ul class="header-nav d-none d-md-flex">
+                <li class="nav-item me-4"><a class="nav-link" href={{url_for('student_dashboard.index',sam=0)}}><i class="fa-solid fa-gauge m-1"></i>Dashboard</a></li>
+                <li class="nav-item me-4"><a class="nav-link text-primary"><i class="fa-solid fa-address-card m-1"></i>Profile</a></li>
+                <li class="nav-item me-4"><a class="nav-link text-danger" href= {{url_for('auth.logout')}} ><i class="fa-solid fa-arrow-right-from-bracket m-1"></i>Logout</a></li>
+              </ul>
+              <ul class="header-nav ms-auto">
+                <i class="fa-solid fa-heart me-2 mt-1 text-danger"></i>Welcome back {{student['Name']}}...
+              </ul>
+              <ul class="header-nav ms-3">
+                <li class="nav-item dropdown">
+                    <a class="nav-link py-0" data-coreui-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    <div class="avatar avatar-md"><img class="avatar-img" src="data:image/jpeg;base64,{{btoa(student['Image']).decode("utf-8")}}"   alt="user@email.com"></div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+          </header>
+        
+        
+        
+          <div class="student-details" style="margin:0 auto ;background-color: white;width: 50%;padding:2em;text-align: center;display: flex;flex-flow: column;justify-content: space-evenly;align-items: center;">
+              <h3><i class="fa-solid fa-book-open-reader m-3"></i></i>Student Details</h3>
+              <img class="avatar-img" src="data:image/jpeg;base64,{{btoa(student['Image']).decode("utf-8")}}"   alt="user@email.com" style="border-radius: 50%;width: 15vh;height: 15vh;">
+              <table class="mt-4" style="width:100%;font-size: 1.2em;text-align: center;">
+                  <tbody>
+                    {% for detail in details %}
+                      <tr>
+                          <th>
+                              {{ detail }}: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <td>
+                          <td>
+                              {{ details[detail] }}
+                          </td>
+                      </tr>
+                    {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+        <!-- CoreUI and necessary plugins-->
+<script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+<script src="vendors/simplebar/js/simplebar.min.js"></script>
+<!-- Plugins and scripts required by this view-->
+<script src="https://kit.fontawesome.com/05f1f51e27.js" crossorigin="anonymous"></script>
+<script src="vendors/chart.js/js/chart.min.js"></script>
+<script src="vendors/@coreui/chartjs/js/coreui-chartjs.js"></script>
+<script src="vendors/@coreui/utils/js/coreui-utils.js"></script>
+<script src="js/main.js"></script>
+<script>
+  function displayImage(binaryData) {
+        // Create a new image element
+        var imgElement = document.createElement("img");
+
+        // Convert the binary data to a data URL
+        var dataURL = "data:image/jpeg" +  ";base64," + btoa(binaryData);
+        return dataURL
+    }
+</script>
+</body>
+</html>
